@@ -14,4 +14,6 @@ module.exports = (sequalize, DataTypes) => {
 			type: DataTypes.INTEGER,
 		},
 	});
+
+	return ShoppingCart;
 };

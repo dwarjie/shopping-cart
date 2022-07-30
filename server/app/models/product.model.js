@@ -4,7 +4,6 @@
  * name
  * desc
  * price
- * inventory_id (foreign key)
  * created_at
  * updated_at
  */
@@ -21,4 +20,6 @@ module.exports = (sequalize, DataTypes) => {
 			type: DataTypes.DECIMAL,
 		},
 	});
+
+	return Product;
 };
