@@ -19,3 +19,6 @@ db.Sequalize = Sequelize;
 db.sequalize = sequalize;
 
 // models or tables
+db.users = require("./users.model")(sequelize, Sequalize);
+
+module.exports = db;
