@@ -1,7 +1,7 @@
 // This module will have the CRUD controller for users model
 
 // utils
-import Error_Message from "../utils/err_message.utils";
+const Error_Message = require("../utils/err_message.utils");
 
 const db = require("../models");
 const Users = db.users;
