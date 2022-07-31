@@ -7,6 +7,8 @@ module.exports = (app) => {
 
 	// for creating a new user
 	router.post("/", users.createUser);
+	// for checking a user
+	router.get("/:id", users.checkUser);
 
 	app.use("/api/users", router);
 };

@@ -31,3 +31,21 @@ exports.createUser = (req, res) => {
 			);
 		});
 };
+
+// Check if user exist
+exports.checkUser = (req, res) => {
+	// get the id of the url
+	const id = req.params.id;
+
+	Users.findByPk(id)
+		.then((data) => {
+			if (data) {
+				res.send(data);
+			} else {
+				Error_Message(res, 404, `User id: ${id} does not exist.`);
+			}
+		})
+		.catch((err) => {
+			Error_Message(res, 500, `Error checking user id: ${id}.`);
+		});
+};
