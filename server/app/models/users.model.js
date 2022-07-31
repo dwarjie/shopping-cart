@@ -17,6 +17,9 @@ module.exports = (sequalize, DataTypes) => {
 		lastName: {
 			type: DataTypes.STRING,
 		},
+		userName: {
+			type: DataTypes.STRING,
+		},
 		email: {
 			type: DataTypes.STRING,
 		},
