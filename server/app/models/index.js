@@ -22,8 +22,11 @@ db.sequalize = sequalize;
 db.users = require("./users.model")(sequalize, Sequalize);
 db.product = require("./product.model")(sequalize, Sequalize);
 db.shoppingCart = require("./shopping_cart.model")(sequalize, Sequalize);
+db.inventory = require("./inventory.model")(sequalize, Sequalize);
 
 // adding relationships to tables
+
+// table users has one to one relationships with table shopping cart
 db.users.hasOne(db.shoppingCart);
 db.shoppingCart.belongsTo(db.users, {
 	foreignKey: {
@@ -31,8 +34,17 @@ db.shoppingCart.belongsTo(db.users, {
 	},
 });
 
-db.product.hasMany(db.shoppingCart);
-db.shoppingCart.belongsTo(db.product, {
+// table inventory has one to many relationships with table product
+db.product.hasMany(db.inventory);
+db.inventory.belongsTo(db.product, {
+	foreignKey: {
+		allowNull: false,
+	},
+});
+
+// table shoppingCart has one to many relationships with table inventory
+db.inventory.hasMany(db.shoppingCart);
+db.shoppingCart.belongsTo(db.inventory, {
 	as: "cart",
 	foreignKey: {
 		allowNull: false,
