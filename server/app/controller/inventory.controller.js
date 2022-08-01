@@ -8,7 +8,7 @@ const Inventory = db.inventory;
 
 // Reading all the products in the inventory
 exports.readInventory = (req, res) => {
-	Inventory.findAll()
+	Inventory.findAll({ include: "product" })
 		.then((data) => {
 			res.send(data);
 		})
@@ -25,7 +25,7 @@ exports.readInventory = (req, res) => {
 exports.addProduct = (req, res) => {
 	const product = {
 		quantity: req.body.quantity,
-		productID: req.body.productID,
+		productId: req.body.productId,
 	};
 
 	Inventory.create(product)

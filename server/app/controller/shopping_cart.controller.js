@@ -1,6 +1,7 @@
 // This module contains the controller methods for shopping cart
 
 // utils
+// import Error_Message from "../utils/err_message.utils";
 const Error_Message = require("../utils/err_message.utils");
 
 const db = require("../models");
@@ -8,7 +9,7 @@ const Cart = db.shoppingCart;
 
 // Reading all the products in the shopping cart
 exports.readCart = (req, res) => {
-	Cart.findAll()
+	Cart.findAll({ include: ["product_inventory", "product"] })
 		.then((data) => {
 			res.send(data);
 		})
@@ -25,8 +26,9 @@ exports.readCart = (req, res) => {
 exports.addItem = (req, res) => {
 	const item = {
 		quantity: req.body.quantity,
-		userID: req.body.userID,
-		productInventoryID: req.body.productInventory,
+		userId: req.body.userId,
+		productInventoryId: req.body.productInventoryId,
+		productId: req.body.productId,
 	};
 
 	Cart.create(item)

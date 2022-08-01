@@ -7,7 +7,7 @@ module.exports = (app) => {
 	// read all products in the inventory
 	router.get("/", inventory.readInventory);
 	// create a new product
-	router.post("/", inventory.createProduct);
+	router.post("/", inventory.addProduct);
 	// update an existing product in the inventory
 	router.put("/:id", inventory.updateProduct);
 	// delete an existing product from the inventory

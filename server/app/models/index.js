@@ -45,7 +45,14 @@ db.inventory.belongsTo(db.product, {
 // table shoppingCart has one to many relationships with table inventory
 db.inventory.hasMany(db.shoppingCart);
 db.shoppingCart.belongsTo(db.inventory, {
-	as: "cart",
+	foreignKey: {
+		allowNull: false,
+	},
+});
+
+// table shoppingCart has one to many relationships with table product for product information
+db.product.hasMany(db.shoppingCart);
+db.shoppingCart.belongsTo(db.product, {
 	foreignKey: {
 		allowNull: false,
 	},
