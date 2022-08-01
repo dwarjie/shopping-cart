@@ -6,6 +6,21 @@ const Error_Message = require("../utils/err_message.utils");
 const db = require("../models");
 const Users = db.users;
 
+// Read all users
+exports.readUser = (req, res) => {
+	Users.findAll()
+		.then((data) => {
+			res.send(data);
+		})
+		.catch((err) => {
+			Error_Message(
+				res,
+				500,
+				err.message || "Some error occurred while reading users."
+			);
+		});
+};
+
 // Creates a new users
 exports.createUser = (req, res) => {
 	// get the inputed user information
@@ -28,6 +43,49 @@ exports.createUser = (req, res) => {
 				res,
 				500,
 				err.message || "Some error occured while creating a User."
+			);
+		});
+};
+
+// Update users
+exports.updateUser = (req, res) => {
+	// get the id of the user
+	const id = req.params.id;
+
+	Users.update(req.body, {
+		where: { id: id },
+	})
+		.then((row) => {
+			// check if affected row is equal to 1
+			// if 1 = success else if 0 means failed
+			if (row == 1) {
+				res.send({ message: 1 });
+			} else {
+				res.send({ message: 0 });
+			}
+		})
+		.catch((err) => {
+			Error_Message(res, 500, err.message || "Error updating user.");
+		});
+};
+
+// Deleting user
+exports.deleteUser = (req, res) => {
+	const id = req.params.id;
+
+	Users.destroy({ where: { id: id } })
+		.then((row) => {
+			if (row == 1) {
+				res.send({ message: 1 });
+			} else {
+				res.send({ message: 0 });
+			}
+		})
+		.catch((err) => {
+			Error_Message(
+				res,
+				500,
+				err.message || "Error occured while deleting user."
 			);
 		});
 };

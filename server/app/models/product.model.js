@@ -19,6 +19,9 @@ module.exports = (sequalize, DataTypes) => {
 		price: {
 			type: DataTypes.DECIMAL,
 		},
+		image: {
+			type: DataTypes.STRING,
+		},
 	});
 
 	return Product;
