@@ -5,8 +5,14 @@ module.exports = (app) => {
 	const users = require("../controller/users.controller");
 	var router = require("express").Router();
 
+	// for reading all users
+	router.get("/", users.readUser);
 	// for creating a new user
 	router.post("/", users.createUser);
+	// for updating a user
+	router.put("/:id", users.updateUser);
+	// deleting a user
+	router.delete("/:id", users.deleteUser);
 	// for checking a user
 	router.get("/:id", users.checkUser);
 

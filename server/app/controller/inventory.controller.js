@@ -22,7 +22,7 @@ exports.readInventory = (req, res) => {
 };
 
 // Creating a new Product in the inventory
-exports.createInventory = (req, res) => {
+exports.addProduct = (req, res) => {
 	const product = {
 		quantity: req.body.quantity,
 		productID: req.body.productID,
@@ -42,7 +42,7 @@ exports.createInventory = (req, res) => {
 };
 
 // Update a Product in Inventory
-exports.updateInventory = (req, res) => {
+exports.updateProduct = (req, res) => {
 	const id = req.params.id;
 
 	Inventory.update(req.body, {

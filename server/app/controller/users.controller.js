@@ -104,6 +104,6 @@ exports.checkUser = (req, res) => {
 			}
 		})
 		.catch((err) => {
-			Error_Message(res, 500, `Error checking user id: ${id}.`);
+			Error_Message(res, 500, err.message || `Error checking user id: ${id}.`);
 		});
 };
