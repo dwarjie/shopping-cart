@@ -4,6 +4,11 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
+// import express routes
+const users = require("./app/routes/users.routers");
+const products = require("./app/routes/product.router");
+const inventory = require("./app/routes/inventory.router");
+
 const corsOptions = {
 	origin: "http://localhost:8081",
 };
@@ -14,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // require the database and database models
 const db = require("./app/models");
+const { application } = require("express");
 db.sequalize
 	.sync()
 	.then(() => {
@@ -32,9 +38,9 @@ app.get("/", (req, res) => {
 	res.json({ message: "Server testing." });
 });
 
-require("./app/routes/users.routers")(app);
-require("./app/routes/product.router")(app);
-require("./app/routes/inventory.router")(app);
+app.use("/api/users", users);
+app.use("/api/products", products);
+app.use("/api/inventory", inventory);
 require("./app/routes/shopping_cart.router")(app);
 
 const PORT = process.env.PORT || 8080;
