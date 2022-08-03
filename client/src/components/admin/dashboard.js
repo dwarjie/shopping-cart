@@ -7,36 +7,36 @@ function Dashboard() {
 		<div className="container text-center mt-5">
 			<h1>Admin Dashboard</h1>
 			<div className="row gy-3 mt-3">
-				<Link to={"/admin/users"}>
-					<div className="col-sm-12 col-md-6 col-lg-4">
+				<div className="col-sm-12 col-md-6 col-lg-4">
+					<Link to={"/admin/users"}>
 						<button
 							type="button"
-							className="btn btn-outline-primary btn-lg p-4 w-100"
+							className="p-4 w-100 btn btn-outline-primary btn-lg"
 						>
 							Users
 						</button>
-					</div>
-				</Link>
-				<Link to={"/admin/products"}>
-					<div className="col-sm-12 col-md-6 col-lg-4">
+					</Link>
+				</div>
+				<div className="col-sm-12 col-md-6 col-lg-4">
+					<Link to={"/admin/products"}>
 						<button
 							type="button"
-							className="btn btn-outline-primary btn-lg p-4 w-100"
+							className="p-4 w-100 btn btn-outline-primary btn-lg"
 						>
 							Products
 						</button>
-					</div>
-				</Link>
-				<Link to={"/admin/inventory"}>
-					<div className="col-sm-12 col-md-6 col-lg-4">
+					</Link>
+				</div>
+				<div className="col-sm-12 col-md-6 col-lg-4">
+					<Link to={"/admin/inventory"}>
 						<button
 							type="button"
-							className="btn btn-outline-primary btn-lg p-4 w-100"
+							className="p-4 w-100 btn btn-outline-primary btn-lg"
 						>
 							Inventory
 						</button>
-					</div>
-				</Link>
+					</Link>
+				</div>
 			</div>
 		</div>
 	);
