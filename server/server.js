@@ -39,6 +39,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", users);
+app.use("/api/admin/users", users); // for admin dashboard
 app.use("/api/products", products);
 app.use("/api/inventory", inventory);
 require("./app/routes/shopping_cart.router")(app);
