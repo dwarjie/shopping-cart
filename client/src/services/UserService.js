@@ -13,11 +13,16 @@ const updateUser = (id, data) => {
 const deleteUser = (id) => {
 	return http.delete(`/admin/users/${id}`);
 };
+// this route is for getting specific users from server
+const getUser = (id) => {
+	return http.get(`/admin/users/${id}`);
+};
 
 const UserService = {
 	readUser,
 	updateUser,
 	deleteUser,
+	getUser,
 };
 
 export default UserService;
