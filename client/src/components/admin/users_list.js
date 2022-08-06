@@ -7,13 +7,21 @@ import UserService from "../../services/UserService";
 
 const UserList = () => {
 	const [users, setUsers] = useState([]);
-	const [currentIndex, setCurrentIndex] = useState(-1);
+	const [message, setMessage] = useState("");
 
 	// once the UI are done rendering
 	// use effect function will call readALlUsers
 	useEffect(() => {
 		readAllUsers();
 	}, []);
+
+	// this function will be called when message state is changed
+	useEffect(() => {
+		if (message.message === undefined) {
+			return;
+		}
+		console.log(message.message);
+	}, [message]);
 
 	// this function will request to the server using the routes in UserService
 	// then retrieve all the users from the database
@@ -26,6 +34,30 @@ const UserList = () => {
 			.catch((err) => {
 				console.log(err);
 			});
+	};
+
+	// this function will get the id of the user then delete it
+	const deleteUser = (id) => {
+		UserService.deleteUser(id)
+			.then((response) => {
+				console.log(response.data);
+				setMessage(response.data);
+				refreshList();
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	// this function will handle the onClick of the buttons
+	const btnDelete = (id) => {
+		deleteUser(id);
+	};
+
+	// this function will refresh the list
+	const refreshList = () => {
+		setUsers([]);
+		readAllUsers();
 	};
 
 	return (
@@ -45,10 +77,20 @@ const UserList = () => {
 									role="group"
 									aria-label="Basic example"
 								>
-									<button type="button" className="btn btn-primary">
+									<Link
+										to={`/admin/users/${user.id}`}
+										type="button"
+										className="btn btn-primary"
+									>
 										<PencilSquare />
-									</button>
-									<button type="button" className="btn btn-danger">
+									</Link>
+									<button
+										type="button"
+										className="btn btn-danger"
+										onClick={() => {
+											btnDelete(user.id);
+										}}
+									>
 										<TrashFill />
 									</button>
 								</div>

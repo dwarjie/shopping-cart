@@ -8,6 +8,7 @@ import Login from "./components/public/login";
 // admin components
 import Dashboard from "./components/admin/dashboard";
 import UserList from "./components/admin/users_list";
+import User from "./components/admin/user";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<Route path="/" element={<Login />} />
 				<Route exact path="/admin" element={<Dashboard />} />
 				<Route exact path="/admin/users" element={<UserList />} />
+				<Route exact path="/admin/users/:id" element={<User />} />
 			</Routes>
 		</div>
 	);
