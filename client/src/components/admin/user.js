@@ -103,7 +103,7 @@ const User = () => {
 				<div className="form-group mb-3">
 					<label htmlFor="password">Password</label>
 					<input
-						type="password"
+						type="text"
 						className="form-control"
 						id="password"
 						name="password"
@@ -111,6 +111,12 @@ const User = () => {
 						onChange={handleInputChange}
 						required
 					/>
+				</div>
+				<div className="d-grid d-md-block gap-2 mb-3">
+					<button type="submit" className="mx-md-2 btn btn-primary">
+						Update
+					</button>
+					<button className="btn btn-secondary">Cancel</button>
 				</div>
 			</form>
 		</div>
