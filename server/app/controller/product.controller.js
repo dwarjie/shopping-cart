@@ -86,3 +86,25 @@ exports.deleteProduct = (req, res) => {
 			);
 		});
 };
+
+// Check for a specific product
+exports.checkProduct = (req, res) => {
+	// get the id of the url
+	const id = req.params.id;
+
+	Users.findByPk(id)
+		.then((data) => {
+			if (data) {
+				res.send(data);
+			} else {
+				Error_Message(res, 404, `Product id: ${id} does not exist.`);
+			}
+		})
+		.catch((err) => {
+			Error_Message(
+				res,
+				500,
+				err.message || `Error checking product id: ${id}.`
+			);
+		});
+};
