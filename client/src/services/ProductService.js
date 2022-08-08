@@ -1,5 +1,4 @@
 // this module will handle the routes from the server using http-common
-
 import http from "../http-common";
 
 // this route is for reading all the products

@@ -9,6 +9,7 @@ import Login from "./components/public/login";
 import Dashboard from "./components/admin/dashboard";
 import UserList from "./components/admin/users_list";
 import User from "./components/admin/user";
+import ProductList from "./components/admin/product_list";
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 				<Route exact path="/admin" element={<Dashboard />} />
 				<Route exact path="/admin/users" element={<UserList />} />
 				<Route exact path="/admin/users/:id" element={<User />} />
+				<Route exact path="/admin/products" element={<ProductList />} />
 			</Routes>
 		</div>
 	);
