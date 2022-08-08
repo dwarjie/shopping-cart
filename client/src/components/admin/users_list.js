@@ -61,8 +61,8 @@ const UserList = () => {
 	};
 
 	return (
-		<div className="container text-center mt-5">
-			<h1>Users List</h1>
+		<div className="container mt-5">
+			<h1 className="text-center">Users List</h1>
 			<div>
 				<ul className="list-group">
 					{users &&
@@ -98,6 +98,9 @@ const UserList = () => {
 						))}
 				</ul>
 			</div>
+			<Link to={`/admin`} type="button" className="btn btn-secondary mt-3">
+				Back
+			</Link>
 		</div>
 	);
 };
