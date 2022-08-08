@@ -42,6 +42,27 @@ const User = () => {
 			});
 	};
 
+	// update the users information
+	const updateUser = (event) => {
+		event.preventDefault();
+
+		UserService.updateUser(currentUser.id, currentUser)
+			.then((response) => {
+				console.log(response.data);
+				setMessage("User updated");
+				getUser(id);
+			})
+			.catch((err) => {
+				console.log(err);
+				setMessage("Could not update user");
+			});
+	};
+
+	// cancel the update and go back from the users list
+	const cancelUpdate = () => {
+		navigate("/admin/users");
+	};
+
 	// this will handle the onChange of inputs
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
@@ -112,11 +133,18 @@ const User = () => {
 						required
 					/>
 				</div>
-				<div className="d-grid d-md-block gap-2 mb-3">
-					<button type="submit" className="mx-md-2 btn btn-primary">
+				<div className="form-group d-grid d-md-block gap-2 mb-3">
+					<button
+						type="submit"
+						className="mx-md-2 btn btn-primary"
+						onClick={updateUser}
+					>
 						Update
 					</button>
-					<button className="btn btn-secondary">Cancel</button>
+					<button className="btn btn-secondary" onClick={cancelUpdate}>
+						Cancel
+					</button>
+					<p className="my-2">{message}</p>
 				</div>
 			</form>
 		</div>
