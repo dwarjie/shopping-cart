@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { TrashFill, PencilSquare } from "react-bootstrap-icons";
 
 // components
 import UserService from "../../services/UserService";
+import ListLayout from "../layout/list.layout";
 
 const UserList = () => {
 	const [users, setUsers] = useState([]);
@@ -67,34 +67,11 @@ const UserList = () => {
 				<ul className="list-group">
 					{users &&
 						users.map((user) => (
-							<div
-								className="list-group-item d-flex flex-row align-items-center justify-content-between"
-								key={user.id}
-							>
-								<p className="m-0">{`${user.firstName} ${user.lastName}`}</p>
-								<div
-									className="btn-group"
-									role="group"
-									aria-label="Basic example"
-								>
-									<Link
-										to={`/admin/users/${user.id}`}
-										type="button"
-										className="btn btn-primary"
-									>
-										<PencilSquare />
-									</Link>
-									<button
-										type="button"
-										className="btn btn-danger"
-										onClick={() => {
-											btnDelete(user.id);
-										}}
-									>
-										<TrashFill />
-									</button>
-								</div>
-							</div>
+							<ListLayout
+								data={user}
+								location={`/admin/users/${user.id}`}
+								btnDelete={btnDelete}
+							/>
 						))}
 				</ul>
 			</div>
