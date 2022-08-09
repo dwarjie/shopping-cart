@@ -84,3 +84,24 @@ exports.deleteProduct = (req, res) => {
 			);
 		});
 };
+
+// Get the information of a specific product
+exports.getProduct = (req, res) => {
+	const id = req.params.id;
+
+	Inventory.findByPk(id, { include: "product" })
+		.then((data) => {
+			if (data) {
+				res.send(data);
+			} else {
+				Error_Message(res, 404, `Product id: ${id} does not exist.`);
+			}
+		})
+		.catch((err) => {
+			Error_Message(
+				res,
+				500,
+				err.messsage || "Some error occured while retrieving product."
+			);
+		});
+};

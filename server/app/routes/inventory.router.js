@@ -11,5 +11,7 @@ router.post("/", inventory.addProduct);
 router.put("/:id", inventory.updateProduct);
 // delete an existing product from the inventory
 router.delete("/:id", inventory.deleteProduct);
+// read a specific product
+router.get("/:id", inventory.getProduct);
 
 module.exports = router;

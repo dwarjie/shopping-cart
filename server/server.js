@@ -43,7 +43,6 @@ app.use("/api/admin/users", users); // for admin dashboard
 app.use("/api/products", products);
 app.use("/api/admin/products", products); // for admin dashboard
 app.use("/api/inventory", inventory);
-app.use("/api/admin/inventory", inventory); // for admin dashboard
 require("./app/routes/shopping_cart.router")(app);
 
 const PORT = process.env.PORT || 8080;
