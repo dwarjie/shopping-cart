@@ -71,6 +71,7 @@ const UserList = () => {
 								data={user}
 								location={`/admin/users/${user.id}`}
 								btnDelete={btnDelete}
+								key={user.id}
 							/>
 						))}
 				</ul>

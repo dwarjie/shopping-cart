@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { TrashFill, PencilSquare } from "react-bootstrap-icons";
 
 // components
 import ProductService from "../../services/ProductService";
@@ -25,9 +26,49 @@ const ProductList = () => {
 				console.error(err.message);
 			});
 	};
+
+	const btnDelete = () => {};
 	return (
 		<div className="container mt-3">
 			<h1 className="text-center">Product List</h1>
+			<div>
+				<ul className="list-group">
+					{products &&
+						products.map((product) => (
+							<div
+								className="list-group-item d-flex flex-row align-items-center justify-content-between"
+								key={product.id}
+							>
+								<p className="m-0">{`${product.name}`}</p>
+								<div
+									className="btn-group"
+									role="group"
+									aria-label="Basic example"
+								>
+									<Link
+										to={`/admin/products/${product.id}`}
+										type="button"
+										className="btn btn-primary"
+									>
+										<PencilSquare />
+									</Link>
+									<button
+										type="button"
+										className="btn btn-danger"
+										onClick={() => {
+											btnDelete(product.id);
+										}}
+									>
+										<TrashFill />
+									</button>
+								</div>
+							</div>
+						))}
+				</ul>
+			</div>
+			<Link to={`/admin`} type="button" className="btn btn-secondary mt-3">
+				Back
+			</Link>
 		</div>
 	);
 };

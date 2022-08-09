@@ -6,10 +6,7 @@ import { TrashFill, PencilSquare } from "react-bootstrap-icons";
 
 const ListLayout = (props) => {
 	return (
-		<div
-			className="list-group-item d-flex flex-row align-items-center justify-content-between"
-			key={props.data.id}
-		>
+		<div className="list-group-item d-flex flex-row align-items-center justify-content-between">
 			<p className="m-0">{`${props.data.firstName} ${props.data.lastName}`}</p>
 			<div className="btn-group" role="group" aria-label="Basic example">
 				<Link to={props.location} type="button" className="btn btn-primary">

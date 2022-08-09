@@ -10,6 +10,7 @@ import Dashboard from "./components/admin/dashboard";
 import UserList from "./components/admin/users_list";
 import User from "./components/admin/user";
 import ProductList from "./components/admin/product_list";
+import Product from "./components/admin/product";
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 				<Route exact path="/admin/users" element={<UserList />} />
 				<Route exact path="/admin/users/:id" element={<User />} />
 				<Route exact path="/admin/products" element={<ProductList />} />
+				<Route exact path="/admin/products/:id" element={<Product />} />
 			</Routes>
 		</div>
 	);
