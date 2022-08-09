@@ -11,6 +11,7 @@ const UserList = () => {
 
 	// once the UI are done rendering
 	// use effect function will call readALlUsers
+
 	useEffect(() => {
 		readAllUsers();
 	}, []);

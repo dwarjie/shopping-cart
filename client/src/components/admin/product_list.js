@@ -14,6 +14,13 @@ const ProductList = () => {
 		readProducts();
 	}, []);
 
+	// this function will be triggered once a product is deleted
+	useEffect(() => {
+		if (message.message === undefined) return;
+
+		console.log(message.message);
+	}, [message]);
+
 	// read all the products
 	// this will be called and will read all the products in the server
 	const readProducts = () => {
@@ -27,7 +34,27 @@ const ProductList = () => {
 			});
 	};
 
-	const btnDelete = () => {};
+	const deleteProduct = (id) => {
+		ProductService.deleteProduct(id)
+			.then((response) => {
+				console.log(response.data);
+				setMessage(response.data);
+				refreshList();
+			})
+			.catch((err) => {
+				console.error(err.message);
+			});
+	};
+
+	const btnDelete = (id) => {
+		deleteProduct(id);
+	};
+
+	// refresh the list of products in order to keep it updated
+	const refreshList = () => {
+		setProducts([]);
+		readProducts();
+	};
 	return (
 		<div className="container mt-3">
 			<h1 className="text-center">Product List</h1>
