@@ -92,7 +92,7 @@ exports.checkProduct = (req, res) => {
 	// get the id of the url
 	const id = req.params.id;
 
-	Users.findByPk(id)
+	Product.findByPk(id)
 		.then((data) => {
 			if (data) {
 				res.send(data);
