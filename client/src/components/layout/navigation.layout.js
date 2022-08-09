@@ -19,10 +19,10 @@ const Navigation = () => {
 					<span className="navbar-toggler-icon"></span>
 				</button>
 				<div
-					className="collapse navbar-collapse justify-content-lg-end"
+					className="collapse navbar-collapse float-lg-end"
 					id="navbar-toggle-content"
 				>
-					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
+					<ul className="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-4">
 						<Link to={"/"} className="nav-item nav-link">
 							Login
 						</Link>
