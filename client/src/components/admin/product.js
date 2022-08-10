@@ -1,7 +1,7 @@
 // this component is for updating and viewing the content of a product
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import ProductPicture from "../../product.jpg";
+import ProductPicture from "../../assets/product.jpg";
 // component
 import ProductService from "../../services/ProductService";
 
