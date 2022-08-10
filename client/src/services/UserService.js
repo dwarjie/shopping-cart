@@ -18,11 +18,18 @@ const getUser = (id) => {
 	return http.get(`/admin/users/${id}`);
 };
 
+// this route is for public components
+// verifyUser will check if the user exists
+const verifyUser = (id) => {
+	return http.get(`/users/${id}`);
+};
+
 const UserService = {
 	readUser,
 	updateUser,
 	deleteUser,
 	getUser,
+	verifyUser,
 };
 
 export default UserService;
