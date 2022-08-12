@@ -5,6 +5,7 @@ const Error_Message = require("../utils/err_message.utils");
 
 const db = require("../models");
 const Users = db.users;
+const Op = db.Sequalize.Op;
 
 // Read all users
 exports.readUser = (req, res) => {
@@ -91,7 +92,7 @@ exports.deleteUser = (req, res) => {
 };
 
 // get one user information using id
-exports.checkUser = (req, res) => {
+exports.getUser = (req, res) => {
 	// get the id of the url
 	const id = req.params.id;
 
@@ -108,24 +109,28 @@ exports.checkUser = (req, res) => {
 		});
 };
 
+// this function will check if username exists in the database
+// then return the user information
 exports.verifyUser = (req, res) => {
+	const userName = req.query.userName;
+	console.log(userName);
 	const condition = {
-		where: { username: req.body.username },
+		userName: { [Op.like]: `%${userName}%` },
 	};
-	Users.findOne(condition)
+	Users.findOne({ where: condition })
 		.then((data) => {
 			// if data exist, send the response
 			if (data) {
 				res.send(data);
 			} else {
-				Error_Message(res, 404, `User: ${req.body.username} does not exist.`);
+				Error_Message(res, 404, `User: ${req.query.userName} does not exist.`);
 			}
 		})
 		.catch((err) => {
 			Error_Message(
 				res,
 				500,
-				err.message || `Error checking user: ${req.body.username}.`
+				err.message || `Error checking user: ${req.body.userName}.`
 			);
 		});
 };

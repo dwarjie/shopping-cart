@@ -20,8 +20,8 @@ const getUser = (id) => {
 
 // this route is for public components
 // verifyUser will check if the user exists
-const verifyUser = (id) => {
-	return http.get(`/users/${id}`);
+const verifyUser = (userName) => {
+	return http.get(`/users?userName=${userName}`);
 };
 
 const UserService = {
