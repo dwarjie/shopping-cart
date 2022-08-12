@@ -90,7 +90,7 @@ exports.deleteUser = (req, res) => {
 		});
 };
 
-// Check if user exist
+// get one user information using id
 exports.checkUser = (req, res) => {
 	// get the id of the url
 	const id = req.params.id;
@@ -105,5 +105,27 @@ exports.checkUser = (req, res) => {
 		})
 		.catch((err) => {
 			Error_Message(res, 500, err.message || `Error checking user id: ${id}.`);
+		});
+};
+
+exports.verifyUser = (req, res) => {
+	const condition = {
+		where: { username: req.body.username },
+	};
+	Users.findOne(condition)
+		.then((data) => {
+			// if data exist, send the response
+			if (data) {
+				res.send(data);
+			} else {
+				Error_Message(res, 404, `User: ${req.body.username} does not exist.`);
+			}
+		})
+		.catch((err) => {
+			Error_Message(
+				res,
+				500,
+				err.message || `Error checking user: ${req.body.username}.`
+			);
 		});
 };

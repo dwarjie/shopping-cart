@@ -15,4 +15,7 @@ router.delete("/:id", users.deleteUser);
 // for checking a user
 router.get("/:id", users.checkUser);
 
+// for verifyUser in order to login
+router.get("/login", users.verifyUser);
+
 module.exports = router;
