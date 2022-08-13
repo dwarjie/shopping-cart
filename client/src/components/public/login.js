@@ -3,6 +3,7 @@ import { PersonCircle } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 
 // components
+import Global from "../admin/global";
 import Navigation from "../layout/navigation.layout";
 import UserService from "../../services/UserService";
 
@@ -19,12 +20,27 @@ const Login = () => {
 		event.preventDefault();
 		UserService.verifyUser(credential.username)
 			.then((response) => {
-				setUser(response.data);
-				console.log(response.data);
+				if (!response.data[0].password) {
+					console.log("User does not exist");
+				} else {
+					setUser(response.data[0]);
+					checkPassword();
+				}
 			})
 			.catch((err) => {
 				console.log(err);
 			});
+	};
+
+	// this function will check if the users password matched to the input value
+	const checkPassword = () => {
+		if (user.password !== credential.password) {
+			console.log("Password does not match.");
+			return;
+		}
+
+		Global.setLoggedIn(true);
+		Global.setUser(user);
 	};
 
 	const handleInputChange = (event) => {
