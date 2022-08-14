@@ -18,14 +18,15 @@ const Login = () => {
 	// call the user service to check if the user exist
 	const verifyUser = (event) => {
 		event.preventDefault();
-		UserService.verifyUser(credential.username)
+		UserService.verifyUser(credential)
 			.then((response) => {
-				if (!response.data[0].password) {
-					console.log("User does not exist");
-				} else {
-					setUser(response.data[0]);
-					checkPassword();
-				}
+				console.log(response.data);
+				// if (!response.data[0].password) {
+				// 	console.log("User does not exist");
+				// } else {
+				// 	setUser(response.data[0]);
+				// 	checkPassword();
+				// }
 			})
 			.catch((err) => {
 				console.log(err);

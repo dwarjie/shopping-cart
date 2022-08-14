@@ -113,7 +113,7 @@ exports.getUser = (req, res) => {
 // this function will check if username exists in the database
 // then return the user information
 exports.verifyUser = (req, res) => {
-	Users.findOne({ where: { userName: req.body.userName } })
+	Users.findOne({ where: { userName: req.body.username } })
 		.then((data) => {
 			// if username does not exist, return user does not exist
 			if (!data) {

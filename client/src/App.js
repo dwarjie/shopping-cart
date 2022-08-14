@@ -19,7 +19,7 @@ function App() {
 			{/* define routes */}
 			<Routes>
 				<Route path="/" element={<Login />} />
-				<Route path="/users" element={<Login />} />
+				<Route path="/users/login" element={<Login />} />
 				<Route exact path="/admin" element={<Dashboard />} />
 				<Route exact path="/admin/users" element={<UserList />} />
 				<Route exact path="/admin/users/:id" element={<User />} />
