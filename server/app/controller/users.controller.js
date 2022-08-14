@@ -112,15 +112,15 @@ exports.getUser = (req, res) => {
 // this function will check if username exists in the database
 // then return the user information
 exports.verifyUser = (req, res) => {
-	const userName = req.query.userName;
-	console.log(userName);
-	const condition = {
-		userName: { [Op.like]: `%${userName}%` },
-	};
-	Users.findOne({ where: condition })
+	const user = req.query.userName;
+	// const condition = {
+	// 	userName: { [Op.like]: `%${userName}%` },
+	// };
+	Users.findOne({ where: { userName: user } })
 		.then((data) => {
 			// if data exist, send the response
-			if (data) {
+			if (data !== null) {
+				console.log(userName);
 				res.send(data);
 			} else {
 				Error_Message(res, 404, `User: ${req.query.userName} does not exist.`);
