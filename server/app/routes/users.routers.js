@@ -16,6 +16,6 @@ router.delete("/:id", users.deleteUser);
 router.get("/:id", users.getUser);
 
 // for verifyUser in order to login
-router.get("/login", users.verifyUser);
+router.post("/login", users.verifyUser);
 
 module.exports = router;

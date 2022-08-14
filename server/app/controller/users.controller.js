@@ -4,8 +4,9 @@
 const Error_Message = require("../utils/err_message.utils");
 
 const db = require("../models");
+const config = require("../config/auth.config");
+var jwt = require("jsonwebtoken");
 const Users = db.users;
-const Op = db.Sequalize.Op;
 
 // Read all users
 exports.readUser = (req, res) => {
@@ -112,19 +113,28 @@ exports.getUser = (req, res) => {
 // this function will check if username exists in the database
 // then return the user information
 exports.verifyUser = (req, res) => {
-	const user = req.query.userName;
-	// const condition = {
-	// 	userName: { [Op.like]: `%${userName}%` },
-	// };
-	Users.findOne({ where: { userName: user } })
+	Users.findOne({ where: { userName: req.body.userName } })
 		.then((data) => {
-			// if data exist, send the response
-			if (data !== null) {
-				console.log(userName);
-				res.send(data);
-			} else {
-				Error_Message(res, 404, `User: ${req.query.userName} does not exist.`);
+			// if username does not exist, return user does not exist
+			if (!data) {
+				return res.status(404).send({
+					message: `User does not exist`,
+				});
 			}
+			// check if inputed password matched the saved password
+			if (req.body.password !== data.password) {
+				return res.status(401).send({
+					accessToken: null,
+					message: "Invalid password",
+				});
+			}
+
+			// sign token using jwt
+			var token = jwt.sign({ id: data.id }, config.secret, {
+				expiresIn: 86400, // 24 hours
+			});
+
+			res.status(200).send(data);
 		})
 		.catch((err) => {
 			Error_Message(

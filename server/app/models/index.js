@@ -1,5 +1,4 @@
 // Setting up Sequalize
-
 const dbConfig = require("../config/db.config");
 const Sequalize = require("sequelize");
 const sequalize = new Sequalize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
