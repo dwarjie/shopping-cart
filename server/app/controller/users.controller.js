@@ -130,11 +130,18 @@ exports.verifyUser = (req, res) => {
 			}
 
 			// sign token using jwt
-			var token = jwt.sign({ id: data.id }, config.secret, {
-				expiresIn: 86400, // 24 hours
-			});
+			var token = jwt.sign({ id: data.id }, config.secret);
 
-			res.status(200).send(data);
+			const user = {
+				id: data.id,
+				firstName: data.firstName,
+				lastName: data.lastName,
+				email: data.email,
+				password: data.password,
+				accessToken: token,
+			};
+
+			res.json(user);
 		})
 		.catch((err) => {
 			Error_Message(

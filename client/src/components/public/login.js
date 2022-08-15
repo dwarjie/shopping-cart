@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 // components
 import Navigation from "../layout/navigation.layout";
 import UserService from "../../services/UserService";
+import AuthService from "../../services/AuthService";
 
 const Login = () => {
 	const initialCredentialState = {
@@ -19,13 +20,9 @@ const Login = () => {
 		event.preventDefault();
 		UserService.verifyUser(credential)
 			.then((response) => {
+				setUser(response.data);
+				AuthService.saveToken(response.data.accessToken);
 				console.log(response.data);
-				// if (!response.data[0].password) {
-				// 	console.log("User does not exist");
-				// } else {
-				// 	setUser(response.data[0]);
-				// 	checkPassword();
-				// }
 			})
 			.catch((err) => {
 				console.log(err);

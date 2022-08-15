@@ -1,10 +1,11 @@
 // this module will handle the routes for product API
 
+const middleware = require("../middleware/authJwt");
 const product = require("../controller/product.controller");
 var router = require("express").Router();
 
 // read all products
-router.get("/", product.readProducts);
+router.get("/", middleware.verifyToken, product.readProducts);
 // create new product
 router.post("/", product.createProduct);
 // update existing product
