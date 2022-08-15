@@ -14,7 +14,12 @@ const saveToken = (token) => {
 
 // get the token from the browser local storage
 const getToken = () => {
-	return JSON.parse(localStorage.getItem("token"));
+	const token = JSON.parse(localStorage.getItem("token"));
+	if (token) {
+		return { "x-access-token": token };
+	} else {
+		return {};
+	}
 };
 
 const AuthService = {

@@ -4,8 +4,8 @@ const config = require("../config/auth.config");
 const db = require("../models");
 
 const verifyToken = (req, res, next) => {
-	const authHeader = req.headers["authorization"]; // get the token from the request header
-	const token = authHeader && authHeader.split(" ")[1];
+	const token = req.headers["x-access-token"]; // get the token from the request header
+	// const token = authHeader && authHeader.split(" ")[1];
 
 	// check if the token exists
 	if (token === null) {

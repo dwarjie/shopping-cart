@@ -1,5 +1,6 @@
 // this module will handle the routes from the server using http-common
 import http from "../http-common";
+import AuthService from "./AuthService";
 
 // this route is for reading all the products
 const readProducts = () => {
@@ -21,11 +22,17 @@ const getProduct = (id) => {
 	return http.get(`/admin/products/${id}`);
 };
 
+// this router is for client side
+const readAllProducts = () => {
+	return http.get("/products", { headers: AuthService.getToken() });
+};
+
 const ProductService = {
 	readProducts,
 	updateProduct,
 	deleteProduct,
 	getProduct,
+	readAllProducts,
 };
 
 export default ProductService;

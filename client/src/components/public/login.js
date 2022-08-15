@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { PersonCircle } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // components
 import Navigation from "../layout/navigation.layout";
@@ -8,6 +8,7 @@ import UserService from "../../services/UserService";
 import AuthService from "../../services/AuthService";
 
 const Login = () => {
+	let navigate = useNavigate();
 	const initialCredentialState = {
 		username: "",
 		password: "",
@@ -23,6 +24,7 @@ const Login = () => {
 				setUser(response.data);
 				AuthService.saveToken(response.data.accessToken);
 				console.log(response.data);
+				navigate("/products");
 			})
 			.catch((err) => {
 				console.log(err);
