@@ -1,10 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // components
 import Navigation from "../layout/navigation.layout";
+import UserService from "../../services/UserService";
 
 const Register = () => {
+	const initialUserState = {
+		firstName: "",
+		lastName: "",
+		userName: "",
+		password: "",
+	};
+	const [user, setUser] = useState(initialUserState);
+
+	const registerUser = () => {
+		UserService.registerUser(user)
+			.then((response) => {
+				console.log(response.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	// this will handle the input changes
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setUser({ ...user, [name]: value });
+	};
+
 	return (
 		<div>
 			<Navigation />
@@ -18,6 +43,8 @@ const Register = () => {
 						placeholder="Enter your first name"
 						id="firstName"
 						className="form-control mb-3"
+						value={user.firstName}
+						onChange={handleInputChange}
 					/>
 					<label htmlFor="lastName">Last Name:</label>
 					<input
@@ -26,6 +53,8 @@ const Register = () => {
 						placeholder="Enter your last name"
 						id="lastName"
 						className="form-control mb-3"
+						value={user.lastName}
+						onChange={handleInputChange}
 					/>
 					<div className="d-flex flex-row gap-2">
 						<div className="flex-fill">
@@ -36,6 +65,8 @@ const Register = () => {
 								placeholder="Username"
 								id="userName"
 								className="form-control mb-3 flex-fill"
+								value={user.userName}
+								onChange={handleInputChange}
 							/>
 						</div>
 						<div className="flex-fill">
@@ -46,14 +77,18 @@ const Register = () => {
 								placeholder="atleast 4 - 8 characters"
 								id="password"
 								className="form-control mb-3 flex-fill"
+								value={user.password}
+								onChange={handleInputChange}
 							/>
 						</div>
 					</div>
 					<p className="text-center">
-						Already have an account?{" "}
-						<Link to={"/users/register"}>Login Now!</Link>
+						Already have an account? <Link to={"/users/login"}>Login Now!</Link>
 					</p>
-					<button className="d-block w-100 btn btn-primary mx-auto">
+					<button
+						className="d-block w-100 btn btn-primary mx-auto"
+						onClick={registerUser}
+					>
 						Register
 					</button>
 				</form>
