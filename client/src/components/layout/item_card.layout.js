@@ -2,7 +2,7 @@ import React from "react";
 
 const ItemCard = (props) => {
 	return (
-		<div className="col-12 col-md-6 col-lg-4">
+		<div className="g-col-6">
 			<div className="card">
 				<div className="card-body">
 					<h2 className="card-title">Logitech Mouse</h2>
