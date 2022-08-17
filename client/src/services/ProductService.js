@@ -4,7 +4,7 @@ import AuthService from "./AuthService";
 
 // this route is for reading all the products
 const readProducts = () => {
-	return http.get("/admin/products");
+	return http.get("/admin/products", { headers: AuthService.getToken() });
 };
 
 // this route is for updating all a products

@@ -24,12 +24,17 @@ const verifyUser = (data) => {
 	return http.post(`/users/login`, data);
 };
 
+const registerUser = (data) => {
+	return http.post(`/users/register`, data);
+};
+
 const UserService = {
 	readUser,
 	updateUser,
 	deleteUser,
 	getUser,
 	verifyUser,
+	registerUser,
 };
 
 export default UserService;

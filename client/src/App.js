@@ -5,6 +5,7 @@ import React from "react";
 
 // components
 import Login from "./components/public/login";
+import Register from "./components/public/register";
 import UserProduct from "./components/public/products";
 
 // admin components
@@ -21,6 +22,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Login />} />
 				<Route path="/users/login" element={<Login />} />
+				<Route path="/users/register" element={<Register />} />
 				<Route path="/products" element={<UserProduct />} />
 				<Route exact path="/admin" element={<Dashboard />} />
 				<Route exact path="/admin/users" element={<UserList />} />

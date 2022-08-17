@@ -61,7 +61,7 @@ const Login = () => {
 							onChange={handleInputChange}
 						/>
 						<p className="text-center">
-							New user? <Link to={"/register"}>Register Now!</Link>
+							New user? <Link to={"/users/register"}>Register Now!</Link>
 						</p>
 						<button
 							className="d-block w-100 btn btn-primary mx-auto"
