@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // components
 import Navigation from "../layout/navigation.layout";
 import UserService from "../../services/UserService";
 
 const Register = () => {
+	const navigate = useNavigate();
 	const initialUserState = {
 		firstName: "",
 		lastName: "",
@@ -14,9 +15,15 @@ const Register = () => {
 	};
 	const [user, setUser] = useState(initialUserState);
 
-	const registerUser = () => {
+	const registerUser = (event) => {
+		event.preventDefault();
 		UserService.registerUser(user)
 			.then((response) => {
+				if (!response.data.id) {
+					console.log("Error registering user");
+				}
+
+				navigate("/products");
 				console.log(response.data);
 			})
 			.catch((err) => {
@@ -86,6 +93,7 @@ const Register = () => {
 						Already have an account? <Link to={"/users/login"}>Login Now!</Link>
 					</p>
 					<button
+						type="submit"
 						className="d-block w-100 btn btn-primary mx-auto"
 						onClick={registerUser}
 					>
