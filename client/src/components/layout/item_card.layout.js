@@ -7,14 +7,9 @@ const ItemCard = (props) => {
 			<div className="card">
 				<img src={ProductPicture} alt="Product" className="card-img-top" />
 				<div className="card-body">
-					<h2 className="card-title">Logitech Mouse</h2>
-					<h4 className="card-subtitle mb-2">&#8369; 5,000.00</h4>
-					<p className="card-text">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
-						voluptate ex, veniam reiciendis aperiam, sunt natus qui, tempora
-						saepe dolorum labore expedita autem porro fugit omnis laborum
-						corrupti unde. Pariatur.
-					</p>
+					<h2 className="card-title">{props.data.name}</h2>
+					<h4 className="card-subtitle mb-2">&#8369; {props.data.price}</h4>
+					<p className="card-text">{props.data.desc}</p>
 					<button className="d-block w-100 btn btn-primary mx-auto">
 						Learn More
 					</button>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, userNavigate } from "react-router-dom";
+import { Link, useNavigate, userNavigate } from "react-router-dom";
 
 // components
 import ProductService from "../../services/ProductService";
@@ -7,6 +7,9 @@ import ItemCard from "../layout/item_card.layout";
 import Navigation from "../layout/navigation.layout";
 
 const Product = () => {
+	let navigate = useNavigate();
+	const [products, setProducts] = useState([]);
+
 	useEffect(() => {
 		getProduct();
 	}, []);
@@ -14,6 +17,7 @@ const Product = () => {
 	const getProduct = () => {
 		ProductService.readAllProducts()
 			.then((response) => {
+				setProducts(response.data);
 				console.log(response.data);
 			})
 			.catch((err) => {
@@ -26,15 +30,10 @@ const Product = () => {
 			<div className="container-fluid mt-3">
 				<h1 className="text-center">Product</h1>
 				<div className="row">
-					<ItemCard />
-					<ItemCard />
-					<ItemCard />
-					<ItemCard />
-					<ItemCard />
-					<ItemCard />
-					<ItemCard />
-					<ItemCard />
-					<ItemCard />
+					{products &&
+						products.map((product, index) => (
+							<ItemCard key={index} data={product} />
+						))}
 				</div>
 			</div>
 		</div>
