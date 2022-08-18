@@ -25,7 +25,7 @@ const Product = () => {
 			<Navigation />
 			<div className="container-fluid mt-3">
 				<h1 className="text-center">Product</h1>
-				<div className="d-grid text-center">
+				<div className="row">
 					<ItemCard />
 					<ItemCard />
 					<ItemCard />
