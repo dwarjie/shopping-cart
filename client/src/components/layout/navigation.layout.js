@@ -2,6 +2,7 @@
 // this will be imporated to all frontend components
 import React from "react";
 import { Link } from "react-router-dom";
+import { BagFill } from "react-bootstrap-icons";
 
 const Navigation = () => {
 	return (
@@ -24,16 +25,22 @@ const Navigation = () => {
 				>
 					<ul className="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-4">
 						<Link to={"/"} className="nav-item nav-link">
-							Login
-						</Link>
-						<Link to={"/home"} className="nav-item nav-link">
 							Home
+						</Link>
+						<Link to={"users/login"} className="nav-item nav-link">
+							Login
 						</Link>
 						<Link to={"/products"} className="nav-item nav-link">
 							Products
 						</Link>
 					</ul>
 				</div>
+				<BagFill
+					type="button"
+					className="text-light mx-4 position-relative"
+					width="20"
+					height="20"
+				/>
 			</div>
 		</nav>
 	);

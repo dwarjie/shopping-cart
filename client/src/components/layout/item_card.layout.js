@@ -1,6 +1,6 @@
 import React from "react";
 import ProductPicture from "../../assets/product.jpg";
-import { Link, userNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ItemCard = (props) => {
 	return (
