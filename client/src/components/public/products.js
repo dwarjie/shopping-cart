@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, userNavigate } from "react-router-dom";
 
 // components
 import ProductService from "../../services/ProductService";
@@ -7,7 +6,6 @@ import ItemCard from "../layout/item_card.layout";
 import Navigation from "../layout/navigation.layout";
 
 const Product = () => {
-	let navigate = useNavigate();
 	const [products, setProducts] = useState([]);
 
 	useEffect(() => {

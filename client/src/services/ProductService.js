@@ -29,7 +29,7 @@ const readAllProducts = () => {
 
 // gettings the item information
 const getItem = (id) => {
-	return http.get("/products/:id", { headers: AuthService.getToken() });
+	return http.get(`/products/${id}`);
 };
 
 const ProductService = {
