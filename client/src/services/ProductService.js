@@ -27,12 +27,18 @@ const readAllProducts = () => {
 	return http.get("/products", { headers: AuthService.getToken() });
 };
 
+// gettings the item information
+const getItem = (id) => {
+	return http.get("/products/:id", { headers: AuthService.getToken() });
+};
+
 const ProductService = {
 	readProducts,
 	updateProduct,
 	deleteProduct,
 	getProduct,
 	readAllProducts,
+	getItem,
 };
 
 export default ProductService;

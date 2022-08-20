@@ -7,6 +7,7 @@ import React from "react";
 import Login from "./components/public/login";
 import Register from "./components/public/register";
 import UserProduct from "./components/public/products";
+import Item from "./components/public/product_item";
 
 // admin components
 import Dashboard from "./components/admin/dashboard";
@@ -24,6 +25,7 @@ function App() {
 				<Route path="/users/login" element={<Login />} />
 				<Route path="/users/register" element={<Register />} />
 				<Route path="/products" element={<UserProduct />} />
+				<Route exact path="/products/:id" element={<Item />} />
 				<Route exact path="/admin" element={<Dashboard />} />
 				<Route exact path="/admin/users" element={<UserList />} />
 				<Route exact path="/admin/users/:id" element={<User />} />
