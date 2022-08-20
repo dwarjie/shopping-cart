@@ -35,12 +35,17 @@ const Navigation = () => {
 						</Link>
 					</ul>
 				</div>
-				<BagFill
-					type="button"
-					className="text-light mx-4 position-relative"
-					width="20"
-					height="20"
-				/>
+				<div className="w-0 position-relative mx-4">
+					<BagFill
+						type="button"
+						className="text-light"
+						width="25"
+						height="25"
+					/>
+					<span className="position-absolute top-0 start-80 translate-middle badge rounded-pill text-bg-danger text-light">
+						0
+					</span>
+				</div>
 			</div>
 		</nav>
 	);
