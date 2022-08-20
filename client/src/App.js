@@ -1,9 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
+import "./App.css";
 import React from "react";
 
 // components
+import Home from "./components/public/home";
 import Login from "./components/public/login";
 import Register from "./components/public/register";
 import UserProduct from "./components/public/products";
@@ -21,7 +23,7 @@ function App() {
 		<div>
 			{/* define routes */}
 			<Routes>
-				<Route path="/" element={<Login />} />
+				<Route path="/" element={<Home />} />
 				<Route path="/users/login" element={<Login />} />
 				<Route path="/users/register" element={<Register />} />
 				<Route path="/products" element={<UserProduct />} />
