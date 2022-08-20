@@ -35,14 +35,14 @@ const ProductItem = () => {
 		<div>
 			<Navigation />
 			<div className="container-fluid mt-3 d-flex flex-column flex-lg-row gap-5">
-				<div className="col col-lg-6 d-block mx-auto">
+				<div className="container col col-lg-5 d-block mx-auto">
 					<img
 						src={ProductPicture}
 						alt="Product"
 						className="img-fluid img-thumbnail mb-1 mb-lg-0"
 					/>
 				</div>
-				<div className="col col-lg-6">
+				<div className="container col col-lg-5">
 					<h1>
 						<strong>{product.name}</strong>
 					</h1>
