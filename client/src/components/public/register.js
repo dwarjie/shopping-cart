@@ -10,6 +10,7 @@ const Register = () => {
 	const initialUserState = {
 		firstName: "",
 		lastName: "",
+		email: "",
 		userName: "",
 		password: "",
 	};
@@ -61,6 +62,16 @@ const Register = () => {
 						id="lastName"
 						className="form-control mb-3"
 						value={user.lastName}
+						onChange={handleInputChange}
+					/>
+					<label htmlFor="email">Email:</label>
+					<input
+						type="email"
+						name="email"
+						placeholder="Enter your email"
+						id="email"
+						className="form-control mb-3"
+						value={user.email}
 						onChange={handleInputChange}
 					/>
 					<div className="d-flex flex-row gap-2">

@@ -15,7 +15,7 @@ const ItemCard = (props) => {
 						to={`/products/${props.data.id}`}
 						className="d-block w-100 btn btn-primary mx-auto"
 					>
-						Learn More
+						View Product
 					</Link>
 				</div>
 			</div>

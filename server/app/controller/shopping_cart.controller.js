@@ -9,7 +9,7 @@ const Cart = db.shoppingCart;
 
 // Reading all the products in the shopping cart
 exports.readCart = (req, res) => {
-	Cart.findAll({ include: ["product_inventory", "product"] })
+	Cart.findAll({ include: ["product"] })
 		.then((data) => {
 			res.send(data);
 		})
@@ -27,7 +27,6 @@ exports.addItem = (req, res) => {
 	const item = {
 		quantity: req.body.quantity,
 		userId: req.body.userId,
-		productInventoryId: req.body.productInventoryId,
 		productId: req.body.productId,
 	};
 
