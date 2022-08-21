@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 // component
 import ProductPicture from "../../assets/product.jpg";
 import ProductService from "../../services/ProductService";
+import CartSevice from "../../services/CartService";
 import Navigation from "../layout/navigation.layout";
 
 const ProductItem = () => {
+	let location = useLocation();
 	const { id } = useParams();
 	const [product, setProduct] = useState([]);
 	const [quantity, setQuantity] = useState(1);
@@ -19,6 +21,21 @@ const ProductItem = () => {
 		ProductService.getItem(id)
 			.then((response) => {
 				setProduct(response.data);
+				console.log(response.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	// add a new item in the cart
+	const addItem = () => {
+		CartSevice.addItem({
+			quantity: quantity,
+			userId: location.state.userId,
+			productId: product.id,
+		})
+			.then((response) => {
 				console.log(response.data);
 			})
 			.catch((err) => {
@@ -57,7 +74,9 @@ const ProductItem = () => {
 						value={quantity}
 						onChange={handleInputChange}
 					/>
-					<button className="btn btn-primary w-100">Add to Cart</button>
+					<button className="btn btn-primary w-100" onClick={addItem}>
+						Add to Cart
+					</button>
 				</div>
 			</div>
 		</div>

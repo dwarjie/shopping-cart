@@ -27,7 +27,7 @@ const Navigation = () => {
 						<Link to={"/"} className="nav-item nav-link">
 							Home
 						</Link>
-						<Link to={"users/login"} className="nav-item nav-link">
+						<Link to={"/users/login"} className="nav-item nav-link">
 							Login
 						</Link>
 						<Link to={"/products"} className="nav-item nav-link">

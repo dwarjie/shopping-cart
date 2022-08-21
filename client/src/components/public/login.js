@@ -23,8 +23,12 @@ const Login = () => {
 			.then((response) => {
 				setUser(response.data);
 				AuthService.saveToken(response.data.accessToken);
-				console.log(response.data);
-				navigate("/products");
+				console.log(response.data.id);
+				navigate("/products", {
+					state: {
+						userId: response.data.id,
+					},
+				});
 			})
 			.catch((err) => {
 				console.log(err);

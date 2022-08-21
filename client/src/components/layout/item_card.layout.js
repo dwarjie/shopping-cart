@@ -13,6 +13,9 @@ const ItemCard = (props) => {
 					<p className="card-text">{props.data.desc}</p>
 					<Link
 						to={`/products/${props.data.id}`}
+						state={{
+							userId: props.userId,
+						}}
 						className="d-block w-100 btn btn-primary mx-auto"
 					>
 						View Product
