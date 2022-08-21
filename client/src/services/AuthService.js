@@ -12,6 +12,16 @@ const saveToken = (token) => {
 	localStorage.setItem("token", JSON.stringify(token));
 };
 
+// save user id
+const saveUserId = (userId) => {
+	// check if userid exists
+	if (userId === null) {
+		return console.log("Error in saving user id.");
+	}
+
+	localStorage.setItem("userId", JSON.stringify(userId));
+};
+
 // get the token from the browser local storage
 const getToken = () => {
 	const token = JSON.parse(localStorage.getItem("token"));
@@ -22,9 +32,20 @@ const getToken = () => {
 	}
 };
 
+const getUserId = () => {
+	const id = JSON.parse(localStorage.getItem("userId"));
+	if (!id) {
+		return;
+	}
+
+	return id;
+};
+
 const AuthService = {
 	saveToken,
+	saveUserId,
 	getToken,
+	getUserId,
 };
 
 export default AuthService;
