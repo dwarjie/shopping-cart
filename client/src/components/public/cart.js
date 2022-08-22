@@ -13,7 +13,7 @@ const Cart = () => {
 
 	// get the users items in cart
 	const getUserItems = () => {
-		CartService.getUserItem({ id: id })
+		CartService.getUserItem(id)
 			.then((response) => {
 				console.log(response.data);
 			})

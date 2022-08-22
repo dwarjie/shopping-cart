@@ -2,8 +2,8 @@
 import http from "../http-common";
 
 // read all the items in the shopping cart using the userId
-const getUserItem = (data) => {
-	return http.get(`/cart`, data);
+const getUserItem = (id) => {
+	return http.get(`/cart/${id}`);
 };
 
 // add new item in cart

@@ -5,13 +5,15 @@ module.exports = (app) => {
 	var router = require("express").Router();
 
 	// read all items in shopping cart
-	router.get("/", cart.getUserItems);
+	router.get("/", cart.readCart);
 	// add new item to cart
 	router.post("/", cart.addItem);
 	// update item in shopping cart
 	router.put("/:id", cart.updateItem);
 	// delete item from cart
 	router.delete("/:id", cart.deleteItem);
+	// get the items from a specific user
+	router.get("/:id", cart.getUserItems);
 
 	app.use("/api/cart", router);
 };

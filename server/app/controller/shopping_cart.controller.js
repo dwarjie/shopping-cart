@@ -90,7 +90,7 @@ exports.deleteItem = (req, res) => {
 
 // get the items in the cart of user using userId
 exports.getUserItems = (req, res) => {
-	const userId = req.body.id;
+	const userId = req.params.id;
 	Cart.findAll({ where: { userId: userId }, include: ["product"] })
 		.then((data) => {
 			res.send(data);

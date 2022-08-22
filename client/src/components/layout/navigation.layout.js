@@ -3,12 +3,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BagFill } from "react-bootstrap-icons";
+import AuthService from "../../services/AuthService";
 
 const Navigation = () => {
+	const userId = AuthService.getUserId();
 	let navigate = useNavigate();
 
 	const goToCart = () => {
-		navigate("/cart");
+		navigate(`/cart/${userId}`);
 	};
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark w-auto">
