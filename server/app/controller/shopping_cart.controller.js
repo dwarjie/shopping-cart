@@ -87,3 +87,19 @@ exports.deleteItem = (req, res) => {
 			);
 		});
 };
+
+// get the items in the cart of user using userId
+exports.getUserItems = (req, res) => {
+	const userId = req.body.id;
+	Cart.findAll({ where: { userId: userId }, include: ["product"] })
+		.then((data) => {
+			res.send(data);
+		})
+		.catch((err) => {
+			Error_Message(
+				res,
+				500,
+				err.message || "Some error occured while reading user cart"
+			);
+		});
+};

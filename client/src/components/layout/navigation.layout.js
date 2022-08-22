@@ -1,10 +1,15 @@
 // this reusable component will be a navigation bar
 // this will be imporated to all frontend components
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BagFill } from "react-bootstrap-icons";
 
 const Navigation = () => {
+	let navigate = useNavigate();
+
+	const goToCart = () => {
+		navigate("/cart");
+	};
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark w-auto">
 			<div className="container-fluid">
@@ -41,6 +46,7 @@ const Navigation = () => {
 						className="text-light"
 						width="25"
 						height="25"
+						onClick={goToCart}
 					/>
 					<span className="position-absolute top-0 start-80 translate-middle badge rounded-pill text-bg-danger text-light">
 						0

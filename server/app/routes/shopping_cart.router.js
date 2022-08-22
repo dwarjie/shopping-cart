@@ -5,7 +5,7 @@ module.exports = (app) => {
 	var router = require("express").Router();
 
 	// read all items in shopping cart
-	router.get("/", cart.readCart);
+	router.get("/", cart.getUserItems);
 	// add new item to cart
 	router.post("/", cart.addItem);
 	// update item in shopping cart
