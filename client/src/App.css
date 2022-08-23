@@ -17,3 +17,7 @@
 	background-repeat: no-repeat;
 	color: white;
 }
+
+.c-pointer {
+	cursor: pointer;
+}
