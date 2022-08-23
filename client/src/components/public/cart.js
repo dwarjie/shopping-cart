@@ -19,7 +19,9 @@ const Cart = () => {
 	const getUserItems = () => {
 		CartService.getUserItem(id)
 			.then((response) => {
-				setItems(response.data);
+				console.log(response.data);
+				setItems(response.data.rows);
+				setItemNumber(response.data.count);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -29,7 +31,7 @@ const Cart = () => {
 		<div>
 			<Navigation />
 			<div className="container-fluid w-75 mt-5">
-				<h3>Items:</h3>
+				<h3>Items: {itemNumber}</h3>
 				{items &&
 					items.map((item, index) => <CartItem key={index} data={item} />)}
 			</div>
