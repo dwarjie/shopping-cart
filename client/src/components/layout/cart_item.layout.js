@@ -6,6 +6,10 @@ import { TrashFill } from "react-bootstrap-icons";
 import ProductPicture from "../../assets/product.jpg";
 
 const CartItem = (props) => {
+	// delete the item from the cart by calling the props deleteItem method
+	const deleteItem = (id) => {
+		props.deleteItem(id);
+	};
 	return (
 		<div className="col-12 d-flex flex-row justify-content-between align-content-start p-2">
 			<div className="d-flex flex-row align-content-start col-10 gap-4">
@@ -22,7 +26,10 @@ const CartItem = (props) => {
 				</div>
 			</div>
 			<div className="col d-flex flex-column justify-content-between align-content-end">
-				<TrashFill className="text-danger fs-6 c-pointer d-block mx-auto" />
+				<TrashFill
+					className="text-danger fs-6 c-pointer d-block mx-auto"
+					onClick={() => deleteItem(props.data.id)}
+				/>
 				<div className="d-flex flex-row align-content-start justify-content-center">
 					<span className="mx-4 c-pointer">-</span>
 					<p>{props.data.quantity}</p>

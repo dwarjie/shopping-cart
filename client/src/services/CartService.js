@@ -11,9 +11,21 @@ const addItem = (data) => {
 	return http.post(`/cart`, data);
 };
 
+// update the item in the shopping cart
+const updateItem = (id, data) => {
+	return http.put(`/cart/${id}`, data);
+};
+
+// delete the item from cart
+const deleteItem = (id) => {
+	return http.delete(`/cart/${id}`);
+};
+
 const CartSevice = {
 	getUserItem,
 	addItem,
+	deleteItem,
+	updateItem,
 };
 
 export default CartSevice;

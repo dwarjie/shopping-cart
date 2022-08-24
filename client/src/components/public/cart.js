@@ -27,13 +27,34 @@ const Cart = () => {
 				console.log(err);
 			});
 	};
+
+	// delete the item in the cart
+	const deleteItem = (id) => {
+		CartService.deleteItem(id)
+			.then((response) => {
+				console.log(response.data);
+				refreshList();
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	// refresh the list of the cart items
+	const refreshList = () => {
+		setItemNumber(0);
+		setItems([]);
+		getUserItems();
+	};
 	return (
 		<div>
 			<Navigation />
 			<div className="container-fluid w-75 mt-5">
 				<h3>Items: {itemNumber}</h3>
 				{items &&
-					items.map((item, index) => <CartItem key={index} data={item} />)}
+					items.map((item, index) => (
+						<CartItem key={index} data={item} deleteItem={deleteItem} />
+					))}
 			</div>
 		</div>
 	);

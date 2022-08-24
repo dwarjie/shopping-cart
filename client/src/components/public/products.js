@@ -15,6 +15,7 @@ const Product = () => {
 		getProduct();
 	}, []);
 
+	// get all the products
 	const getProduct = () => {
 		ProductService.readAllProducts()
 			.then((response) => {
