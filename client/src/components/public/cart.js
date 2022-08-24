@@ -28,6 +28,17 @@ const Cart = () => {
 			});
 	};
 
+	// update the quantity of the cart item
+	const updateItem = (id, quantity) => {
+		CartService.updateItem(id, { quantity: quantity })
+			.then((response) => {
+				console.log(response.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
 	// delete the item in the cart
 	const deleteItem = (id) => {
 		CartService.deleteItem(id)
@@ -53,7 +64,12 @@ const Cart = () => {
 				<h3>Items: {itemNumber}</h3>
 				{items &&
 					items.map((item, index) => (
-						<CartItem key={index} data={item} deleteItem={deleteItem} />
+						<CartItem
+							key={index}
+							data={item}
+							deleteItem={deleteItem}
+							updateItem={updateItem}
+						/>
 					))}
 			</div>
 		</div>
