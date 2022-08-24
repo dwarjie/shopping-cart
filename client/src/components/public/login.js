@@ -24,7 +24,20 @@ const Login = () => {
 				setUser(response.data);
 				AuthService.saveToken(response.data.accessToken);
 				AuthService.saveUserId(response.data.id);
-				navigate("/products");
+				// get the information about the user
+				getUserInformation();
+				// navigate("/products");
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	// get the users information
+	const getUserInformation = () => {
+		UserService.getUserInformation()
+			.then((response) => {
+				console.log(response.data);
 			})
 			.catch((err) => {
 				console.log(err);

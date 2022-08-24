@@ -151,3 +151,14 @@ exports.verifyUser = (req, res) => {
 			);
 		});
 };
+
+// get users information
+// this function will get the users item cart number and more?
+exports.getUserInformation = async (req, res) => {
+	try {
+		const [result, metadata] = await db.sequalize.query("SELECT * FROM users");
+		res.send(result);
+	} catch (err) {
+		Error_Message(res, 500, err.message);
+	}
+};

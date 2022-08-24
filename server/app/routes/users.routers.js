@@ -15,6 +15,8 @@ router.get("/:id", users.getUser);
 
 // for verifyUser in order to login
 router.post("/login", users.verifyUser);
+// get the information about the user
+router.get("/login", users.getUserInformation);
 // for creating a new user
 router.post("/register", users.createUser);
 
