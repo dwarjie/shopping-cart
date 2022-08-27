@@ -5,6 +5,7 @@ const Error_Message = require("../utils/err_message.utils");
 
 const db = require("../models");
 const config = require("../config/auth.config");
+const { QueryTypes } = db.Sequalize;
 var jwt = require("jsonwebtoken");
 const Users = db.users;
 
@@ -112,9 +113,11 @@ exports.getUser = (req, res) => {
 
 // this function will check if username exists in the database
 // then return the user information
-exports.verifyUser = (req, res) => {
+exports.verifyUser = async (req, res) => {
 	Users.findOne({ where: { userName: req.body.username } })
 		.then((data) => {
+			let user = {};
+
 			// if username does not exist, return user does not exist
 			if (!data) {
 				return res.status(404).send({
@@ -132,7 +135,7 @@ exports.verifyUser = (req, res) => {
 			// sign token using jwt
 			var token = jwt.sign({ id: data.id }, config.secret);
 
-			const user = {
+			user = {
 				id: data.id,
 				firstName: data.firstName,
 				lastName: data.lastName,
@@ -141,7 +144,23 @@ exports.verifyUser = (req, res) => {
 				accessToken: token,
 			};
 
-			res.json(user);
+			return user;
+		})
+		.then(async (userData) => {
+			try {
+				let result = [];
+				result = await db.sequalize.query(
+					`SELECT COUNT(*) 'cartNumber' FROM shopping_carts WHERE userId = ${userData.id}`,
+					{ type: QueryTypes.SELECT }
+				);
+				console.log(result);
+
+				userData.cartItem = result;
+			} catch (err) {
+				console.log(err);
+			}
+
+			res.json(userData);
 		})
 		.catch((err) => {
 			Error_Message(
@@ -154,11 +173,4 @@ exports.verifyUser = (req, res) => {
 
 // get users information
 // this function will get the users item cart number and more?
-exports.getUserInformation = async (req, res) => {
-	try {
-		const [result, metadata] = await db.sequalize.query("SELECT * FROM users");
-		res.send(result);
-	} catch (err) {
-		Error_Message(res, 500, err.message);
-	}
-};
+exports.getUserInformation = async (id) => {};

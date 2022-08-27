@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PersonCircle } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -24,9 +24,6 @@ const Login = () => {
 				setUser(response.data);
 				AuthService.saveToken(response.data.accessToken);
 				AuthService.saveUserId(response.data.id);
-				// get the information about the user
-				getUserInformation();
-				// navigate("/products");
 			})
 			.catch((err) => {
 				console.log(err);
@@ -34,15 +31,15 @@ const Login = () => {
 	};
 
 	// get the users information
-	const getUserInformation = () => {
-		UserService.getUserInformation()
-			.then((response) => {
-				console.log(response.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+	// const getUserInformation = () => {
+	// 	UserService.getUserInformation()
+	// 		.then((response) => {
+	// 			console.log(response.data);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;

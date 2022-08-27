@@ -24,10 +24,6 @@ const verifyUser = (data) => {
 	return http.post(`/users/login`, data);
 };
 
-const getUserInformation = () => {
-	return http.get(`/users/login`);
-};
-
 const registerUser = (data) => {
 	return http.post(`/users/register`, data);
 };
@@ -38,7 +34,6 @@ const UserService = {
 	deleteUser,
 	getUser,
 	verifyUser,
-	getUserInformation,
 	registerUser,
 };
 
