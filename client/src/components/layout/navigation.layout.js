@@ -1,13 +1,19 @@
 // this reusable component will be a navigation bar
 // this will be imporated to all frontend components
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BagFill } from "react-bootstrap-icons";
 import AuthService from "../../services/AuthService";
+import CartCounter from "../../utils/cartCounter";
 
-const Navigation = () => {
+const Navigation = (props) => {
+	const [cartNumber, setCartNumber] = useState(0);
 	const userId = AuthService.getUserId();
 	let navigate = useNavigate();
+
+	useEffect(() => {
+		setCartNumber(props.cartNumber);
+	}, [props.cartNumber]);
 
 	const goToCart = () => {
 		navigate(`/cart/${userId}`);
@@ -51,7 +57,7 @@ const Navigation = () => {
 						onClick={goToCart}
 					/>
 					<span className="position-absolute top-0 start-80 translate-middle badge rounded-pill text-bg-danger text-light">
-						0
+						{cartNumber}
 					</span>
 				</div>
 			</div>

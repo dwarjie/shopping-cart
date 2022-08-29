@@ -150,7 +150,7 @@ exports.verifyUser = async (req, res) => {
 			try {
 				let result = [];
 				result = await db.sequalize.query(
-					`SELECT COUNT(*) 'cartNumber' FROM shopping_carts WHERE userId = ${userData.id}`,
+					`SELECT COUNT(*) 'cartItem' FROM shopping_carts WHERE userId = ${userData.id}`,
 					{ type: QueryTypes.SELECT }
 				);
 				console.log(result);

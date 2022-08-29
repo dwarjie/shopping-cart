@@ -6,16 +6,23 @@ import ProductPicture from "../../assets/product.jpg";
 import ProductService from "../../services/ProductService";
 import CartSevice from "../../services/CartService";
 import Navigation from "../layout/navigation.layout";
+import CartCounter from "../../utils/cartCounter";
 
 const ProductItem = () => {
 	let location = useLocation();
 	const { id } = useParams();
+	const [cartNumber, setCartNumber] = useState(0); // set the cartNumber to 0
 	const [product, setProduct] = useState([]);
 	const [quantity, setQuantity] = useState(1);
 
 	useEffect(() => {
 		getItem(id);
 	}, [id]);
+
+	// once the UI is loaded, get the value of cartNumber in the local storage and set it to cartNumber
+	useEffect(() => {
+		setCartNumber(CartCounter.getItemNumber());
+	}, [cartNumber]);
 
 	const getItem = (id) => {
 		ProductService.getItem(id)
@@ -50,7 +57,7 @@ const ProductItem = () => {
 
 	return (
 		<div>
-			<Navigation />
+			<Navigation cartNumber={cartNumber} />
 			<div className="container-fluid mt-3 d-flex flex-column flex-lg-row gap-5">
 				<div className="container col col-lg-5 d-block mx-auto">
 					<img

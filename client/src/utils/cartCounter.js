@@ -6,17 +6,17 @@ const saveItemNumber = (itemNumber) => {
 		return console.log("Error saving cart item number");
 	}
 
-	localStorage.setItem("cartItemNumber", itemNumber);
+	localStorage.setItem("cartItemNumber", JSON.stringify(itemNumber));
 };
 
 const getItemNumber = () => {
-	const itemNumber = localStorage.getItem("cartItemNumber");
+	const itemNumber = JSON.parse(localStorage.getItem("cartItemNumber"));
 	// check if itemNumber exists
 	if (!itemNumber) {
 		return 0;
 	}
 
-	return itemNumber;
+	return itemNumber[0].cartItem;
 };
 
 const CartCounter = {
