@@ -44,6 +44,20 @@ const ProductItem = () => {
 		})
 			.then((response) => {
 				console.log(response.data);
+				getItemNumber();
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	// get the updated cart item number
+	const getItemNumber = () => {
+		CartSevice.getUserItem(location.state.userId)
+			.then((response) => {
+				console.log(response.data);
+				CartCounter.saveItemNumber(response.data.count);
+				setCartNumber(CartCounter.getItemNumber());
 			})
 			.catch((err) => {
 				console.log(err);

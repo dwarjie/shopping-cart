@@ -155,7 +155,7 @@ exports.verifyUser = async (req, res) => {
 				);
 				console.log(result);
 
-				userData.cartItem = result;
+				userData.cartItem = result[0].cartItem;
 			} catch (err) {
 				console.log(err);
 			}

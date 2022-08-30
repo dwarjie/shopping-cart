@@ -5,15 +5,22 @@ import CartService from "../../services/CartService";
 import AuthService from "../../services/AuthService";
 import Navigation from "../layout/navigation.layout";
 import CartItem from "../layout/cart_item.layout";
+import CartCounter from "../../utils/cartCounter";
 
 const Cart = () => {
 	const id = AuthService.getUserId();
+	const [cartNumber, setCartNumber] = useState(0); // set the cartNumber to 0
 	const [itemNumber, setItemNumber] = useState(0);
 	const [items, setItems] = useState([]);
 
 	useEffect(() => {
 		getUserItems();
 	}, []);
+
+	// once the UI is loaded, get the value of cartNumber in the local storage and set it to cartNumber
+	useEffect(() => {
+		setCartNumber(CartCounter.getItemNumber());
+	}, [cartNumber]);
 
 	// get the users items in cart
 	const getUserItems = () => {
@@ -59,7 +66,7 @@ const Cart = () => {
 	};
 	return (
 		<div>
-			<Navigation />
+			<Navigation cartNumber={cartNumber} />
 			<div className="container-fluid w-75 mt-5">
 				<h3>Items: {itemNumber}</h3>
 				{items &&

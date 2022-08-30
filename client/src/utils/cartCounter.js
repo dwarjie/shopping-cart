@@ -10,13 +10,18 @@ const saveItemNumber = (itemNumber) => {
 };
 
 const getItemNumber = () => {
+	if (localStorage.key("cartItemNumber") === null) {
+		return 0;
+	}
+
 	const itemNumber = JSON.parse(localStorage.getItem("cartItemNumber"));
+
 	// check if itemNumber exists
 	if (!itemNumber) {
 		return 0;
 	}
 
-	return itemNumber[0].cartItem;
+	return itemNumber;
 };
 
 const CartCounter = {
