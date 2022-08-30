@@ -29,6 +29,8 @@ const Cart = () => {
 				console.log(response.data);
 				setItems(response.data.rows);
 				setItemNumber(response.data.count);
+				CartCounter.saveItemNumber(response.data.count);
+				setCartNumber(CartCounter.getItemNumber());
 			})
 			.catch((err) => {
 				console.log(err);
